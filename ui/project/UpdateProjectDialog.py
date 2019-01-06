@@ -85,7 +85,7 @@ class UpdateProjectDialog(QDialog):
             QMessageBox.information(self, "提示", "请输入项目名称")
             return
         # 提交数据
-        count = self.dbhelper.createProject(projectName=projectName, remark=remark, creator=self.userName)
+        count = self.dbhelper.updateByCondition(projectId=self.projectId,projectName=projectName, remark=remark, creator=self.userName)
         if count > 0:
             QMessageBox.information(self, "提示", "项目修改成功!", QMessageBox.Yes, QMessageBox.Yes)
             self.update_project_success_signal.emit()
