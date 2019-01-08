@@ -16,7 +16,7 @@ from ui.project.UpdateProjectDialog import UpdateProjectDialog
 
 HEADERS= ['编号','名称','创建时间','创建者','备注']
 
-class ProjectStroageView(QWidget,QAbstractTableModel):
+class ProjectStroageView(QWidget):
     def __init__(self):
         super(ProjectStroageView,self).__init__()
         self.resize(700, 500)
@@ -38,8 +38,6 @@ class ProjectStroageView(QWidget,QAbstractTableModel):
 
         self.dbhelper = ProjectManager()
         self.proDatas = [] #数据源
-        # self.loadProjectData()  # 获取数据
-        print(gl.get_value("userName"))
         self.setUpUI()
 
 
@@ -168,7 +166,7 @@ class ProjectStroageView(QWidget,QAbstractTableModel):
     # 分页记录查询
     def recordQuery(self,index):
         if (self.searchEdit.text() == ""):  # 查全部数据并分页显示
-            self.getPageCount()
+            # self.getPageCount()
             label = "/" + str(int(self.totalPage)) + "页"
             self.pageLabel.setText(label)
             self.loadProjectData(index=index,pageRecord=self.pageRecord)  #加载数据
@@ -178,7 +176,7 @@ class ProjectStroageView(QWidget,QAbstractTableModel):
         #带参数查询并分页
         temp = self.searchEdit.text()
         self.loadProjectData(projectName=temp, index=index, pageRecord=self.pageRecord)  # 按条件查数据
-        self.getPageCount(projectName=temp)
+        # self.getPageCount(projectName=temp)
         if (self.totalRecord == 0):
             QMessageBox.information(self, "提醒", "查询无记录", QMessageBox.Yes, QMessageBox.Yes)
             return
@@ -208,8 +206,8 @@ class ProjectStroageView(QWidget,QAbstractTableModel):
         self.currentPage = 1
         self.pageEdit.setText(str(self.currentPage))
         self.getPageCount(projectName=temp)
-        s = "/" + str(int(self.totalPage)) + "页"
-        self.pageLabel.setText(s)
+        # s = "/" + str(int(self.totalPage)) + "页"
+        # self.pageLabel.setText(s)
         index = (self.currentPage - 1) * self.pageRecord
         self.recordQuery(index)
 
@@ -272,26 +270,6 @@ class ProjectStroageView(QWidget,QAbstractTableModel):
         updateprojectdialog.update_project_success_signal.connect(self.on_searchButton_clicked)
         updateprojectdialog.show()
         updateprojectdialog.exec_()
-
-        # self.dbhelper.updateByCondition()
-
-
-        # rowNumber = self.tableView.rowCount()
-        # if rowNumber:
-        #     QMessageBox.information(self,"提示","请选中行")
-        #     return
-        # value_lst = []
-        # for i in range(self.cloumnCount):
-        #     if (len(self.tableView.item(rowNumber - 1, i).text()) == 0):
-        #         value_lst.append(None)
-        #     else:
-        #         value_lst.append(self.tableView.item(rowNumber - 1, i).text())
-        # tup_va_lst = []
-        # for cl, va in zip(self.cloumnCount, value_lst):
-        #     tup_va_lst.append((cl, va))
-
-
-
 
 
     @pyqtSlot()
