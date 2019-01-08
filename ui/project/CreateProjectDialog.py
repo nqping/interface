@@ -81,7 +81,7 @@ class CreateProjectDialog(QDialog):
         remark = self.remarkEdit.toPlainText()
 
         if len(projectName) <1 :
-            QMessageBox.information(self,"提示","请输入项目名称")
+            QMessageBox.warning(self,"警告","请输入项目名称")
             return
         #提交数据
         count = self.dbhelper.createProject(projectName=projectName,remark=remark,creator=self.userName)
@@ -98,13 +98,13 @@ class CreateProjectDialog(QDialog):
 
 
 
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    app.setWindowIcon(QIcon("./images/MainWindow_1.png"))
-    app.setStyleSheet(qdarkstyle.load_stylesheet_pyqt5())
-    mainMindow = CreateProjectDialog()
-    mainMindow.show()
-    sys.exit(app.exec_())
+# if __name__ == "__main__":
+#     app = QApplication(sys.argv)
+#     app.setWindowIcon(QIcon("./images/MainWindow_1.png"))
+#     app.setStyleSheet(qdarkstyle.load_stylesheet_pyqt5())
+#     mainMindow = CreateProjectDialog()
+#     mainMindow.show()
+#     sys.exit(app.exec_())
 
 
 
