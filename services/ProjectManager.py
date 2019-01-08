@@ -17,6 +17,7 @@ class ProjectManager(object):
     def getObjectAll(self):
         sql="select * from tc_project"
         dict = self.mydb.executeQuery_all(sql)
+
         return dict
 
     def getTotalRecordCount(self,projectName=None):
@@ -72,6 +73,8 @@ if __name__=='__main__':
     # print(count)
     # rsdata = p.getObjectByCondition("Joy",0,10)
     # print(rsdata)
-    now_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    count = p.createProject("ssss","dfdfdfd","niuqingping")
-    print(count)
+    # now_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    # count = p.createProject("ssss","dfdfdfd","niuqingping")
+    # print(count)
+    dict = p.getObjectAll()
+    print(dict)
