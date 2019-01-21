@@ -15,6 +15,7 @@ from services.CaseManager import CaseManager
 from services.InterfaceManager import InterfaceManager
 from ui.case.CreateCaseDialog import CreateCaseDialog
 from ui.case.UpdateCaseDialog import UpdateCaseDialog
+from ui.task.TaskloginfoDialog import TAskloginfoDialog
 from model.Cases import Cases
 from utils.globalvar import GlobalVar as gl
 
@@ -333,7 +334,11 @@ class CaseStroageView(QWidget):
         caseModel.userid = value_lst[11]
         caseModel.keylist = value_lst[12]
 
-        self.dbhelper.runCase(caseModel)
+        tasklogid = self.dbhelper.runCase(caseModel)
+        taskloginfoDialog = TAskloginfoDialog(tasklogid)
+        taskloginfoDialog.show()
+        taskloginfoDialog.exec_()
+
 
 
     def upTableView(self):
